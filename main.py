@@ -52,3 +52,4 @@ import os
 os.system("python3 upload_DR.py")
 
 print(f"✅ Đã lưu file: {OUTPUT_FILE}")
+os._exit(0)
