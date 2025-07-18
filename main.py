@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 OUTPUT_FILE = "crypto_full_data.csv"
-df_ids = pd.read_csv("Test_railway/500_coins.csv")
+df_ids = pd.read_csv("500_coins.csv")
 coin_ids = df_ids["id"].tolist()
 
 now = datetime.now()
