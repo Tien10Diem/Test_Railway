@@ -2,7 +2,7 @@ name: Auto Collect and Upload to Drive
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # chạy mỗi 10 phút
+    - cron: "*/5 * * * *"  # chạy mỗi 10 phút
   workflow_dispatch:        # cho phép chạy tay nếu muốn
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
