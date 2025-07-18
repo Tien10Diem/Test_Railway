@@ -23,5 +23,6 @@ jobs:
 
       - name: Run data collection and upload
         run: |
+          echo "$GDRIVE_KEY" > service_account.json
           python3 main.py
           python3 upload_drive.py
