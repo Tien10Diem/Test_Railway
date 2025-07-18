@@ -1,0 +1,33 @@
+name: Upload data to Google Drive every 10 min
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📦 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: 🔽 Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: 🔑 Set up service account key
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GDRIVE_KEY }}
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > service_account.json
+
+      - name: 🕵️ Run upload script
+        run: |
+          python upload_to_drive.py
