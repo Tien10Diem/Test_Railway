@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "PYTHONUNBUFFERED": "1"
+    }
+  },
+  "start": "python upload_DR.py"
+}
