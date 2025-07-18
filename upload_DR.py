@@ -4,7 +4,8 @@ from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 import os
 import io
 import pandas as pd
-
+import json
+import os
 # ==== CẤU HÌNH ====
 SERVICE_ACCOUNT_FILE = "service_account.json"  # 👈 giữ nguyên
 SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -39,9 +40,8 @@ def upload_to_drive():
         print(f"❌ Không tìm thấy file local: {LOCAL_NEW_FILE}")
         return
 
-    creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES
-    )
+    service_account_info = json.loads(os.environ["GDRIVE_KEY"])
+    creds = service_account.Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
     service = build('drive', 'v3', credentials=creds)
 
     file_id = get_existing_file_id(service)
