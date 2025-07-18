@@ -47,4 +47,8 @@ for i in range(0, len(coin_ids), 100):
 
 df = pd.DataFrame(all_data)
 df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8-sig")
+# Cuối file main.py (sau khi lưu csv)
+import os
+os.system("python3 upload_drive.py")
+
 print(f"✅ Đã lưu file: {OUTPUT_FILE}")
